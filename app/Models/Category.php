@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
     /**
      * CATEGORY ATTRIBUTES
+     *
      * $this->attributes['id'] - int - contains the category primary key (id)
      * $this->attributes['name'] - string - contains the category name
      * $this->attributes['description'] - string - contains the category description
@@ -44,7 +46,7 @@ class Category extends Model
         $this->attributes['description'] = $description;
     }
 
-    public function products()
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
