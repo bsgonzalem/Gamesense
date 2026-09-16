@@ -19,3 +19,7 @@ class CategoryRequest extends FormRequest
         ];
     }
 }
+            'description' => 'required',
+        ];
+    }
+}

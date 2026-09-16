@@ -4,8 +4,8 @@
 <div class="container py-5">
 
     <div class="text-center mb-5">
-        <h1>Editar categorias</h1>
-        <p>Actualiza la información de las categorias listadas.</p>
+        <h1>{{ $viewData['title'] }}</h1>
+        <p>Agrega una nueva categoría a la tienda.</p>
     </div>
 
     <div class="row justify-content-center">
@@ -14,16 +14,12 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
 
-                    <form
-                        action="{{ route('category.update', ['id' => $viewData['category']->getId()]) }}"
-                        method="POST"
-                    >
+                    <form action="{{ route('category.save') }}" method="POST">
                         @csrf
-                        @method('PUT')
 
                         <div class="mb-3">
                             <label for="name" class="form-label">
-                                Name
+                                Nombre
                             </label>
 
                             <input
@@ -31,14 +27,14 @@
                                 class="form-control"
                                 id="name"
                                 name="name"
-                                value="{{ old('name', $viewData['category']->getName()) }}"
+                                value="{{ old('name') }}"
                                 required
                             >
                         </div>
 
                         <div class="mb-4">
                             <label for="description" class="form-label">
-                                Description
+                                Descripción
                             </label>
 
                             <textarea
@@ -47,23 +43,23 @@
                                 name="description"
                                 rows="4"
                                 required
-                            >{{ old('description', $viewData['category']->getDescription()) }}</textarea>
+                            >{{ old('description') }}</textarea>
                         </div>
 
                         <div class="d-flex justify-content-between">
 
                             <a
-                                href="{{ route('category.show', ['id' => $viewData['category']->getId()]) }}"
+                                href="{{ route('category.index') }}"
                                 class="btn btn-secondary"
                             >
-                                Cancel
+                                Cancelar
                             </a>
 
                             <button
                                 type="submit"
                                 class="btn btn-primary"
                             >
-                                Update category
+                                Crear categoría
                             </button>
 
                         </div>

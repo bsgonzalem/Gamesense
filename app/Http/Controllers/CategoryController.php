@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
-use Illuminate\View\View;
 use App\Services\CategoryService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-
     public function index(CategoryService $categoryService): View
     {
 
@@ -36,6 +35,7 @@ class CategoryController extends Controller
 
         return redirect()->route('category.index');
     }
+
     public function show(string $id, CategoryService $categoryService): View
     {
         $viewData = [];
@@ -71,6 +71,7 @@ class CategoryController extends Controller
     {
         $category = $categoryService->getCategoryById((int) $id);
         $categoryService->deleteCategory($category);
+
         return redirect()->route('category.index');
     }
 }
