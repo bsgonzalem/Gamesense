@@ -1,26 +1,77 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Gamesense') }} · @yield('title', 'Usuarios')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
+
+    <title>@yield('title', 'Online Store')</title>
+
 </head>
-<body class="min-h-screen bg-gray-100 text-gray-900 antialiased">
-    <header class="border-b border-gray-200 bg-white">
-        <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <a href="{{ route('users.index') }}" class="text-lg font-semibold">Gamesense · Usuarios</a>
-        </div>
-    </header>
 
-    <main class="mx-auto max-w-5xl px-6 py-8">
-        @if (session('status'))
-            <div class="mb-6 rounded-md border border-green-300 bg-green-50 px-4 py-3 text-sm text-green-800">
-                {{ session('status') }}
+<body>
+
+    <!-- header -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
+
+        <div class="container">
+
+            <a class="navbar-brand" href=" ">Game Sense</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                <div class="navbar-nav ms-auto">
+
+                    <a class="nav-link active" href="">About</a>
+                    <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+                    @guest
+                    @else
+                    <form id="logout" action="{{ route('logout') }}" method="POST">
+
+                        <a role="button" class="nav-link active" onclick="document.getElementById('logout').submit();">Logout</a>
+                        @csrf
+                        
+                    </form>
+                    @endguest
+                </div>
+
             </div>
-        @endif
 
-        @yield('content')
-    </main>
+        </div>
+
+    </nav>
+
+    <div class="container my-4"> @yield('content') </div>
+    <!-- footer -->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>
+                Copyright - <a class="text-reset fw-bold text-decoration-none" target="_blank"
+                    href="https://twitter.com/danielgarax">
+                    Daniel Correa
+                </a>
+            </small>
+        </div>
+    </div>
+    <!-- footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

@@ -3,57 +3,52 @@
 @section('title', 'Usuarios')
 
 @section('content')
-    <div class="mb-6 flex items-center justify-between">
-        <h1 class="text-2xl font-semibold">Usuarios</h1>
-        <a
-            href="{{ route('users.create') }}"
-            class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
-        >
-            Nuevo usuario
-        </a>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0">Usuarios</h1>
+        <a href="{{ route('users.create') }}" class="btn btn-primary">Nuevo usuario</a>
     </div>
 
-    <div class="overflow-hidden rounded-md border border-gray-200 bg-white">
-        <table class="min-w-full divide-y divide-gray-200 text-sm">
-            <thead class="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
                 <tr>
-                    <th class="px-4 py-3">Nombre</th>
-                    <th class="px-4 py-3">Correo</th>
-                    <th class="px-4 py-3">Dirección</th>
-                    <th class="px-4 py-3 text-right">Acciones</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Dirección</th>
+                    <th class="text-end">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
+            <tbody>
                 @forelse ($users as $user)
                     <tr>
-                        <td class="px-4 py-3">{{ $user->getName() }}</td>
-                        <td class="px-4 py-3">{{ $user->getEmail() }}</td>
-                        <td class="px-4 py-3">{{ $user->getAddress() ?? '—' }}</td>
-                        <td class="px-4 py-3 text-right">
-                            <a href="{{ route('users.show', $user) }}" class="text-blue-600 hover:underline">Ver</a>
-                            <a href="{{ route('users.edit', $user) }}" class="ml-3 text-gray-600 hover:underline">Editar</a>
+                        <td>{{ $user->getName() }}</td>
+                        <td>{{ $user->getEmail() }}</td>
+                        <td>{{ $user->getAddress() ?? '—' }}</td>
+                        <td class="text-end">
+                            <a href="{{ route('users.show', $user) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
+                            <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-outline-primary">Editar</a>
                             <form
                                 action="{{ route('users.destroy', $user) }}"
                                 method="POST"
-                                class="ml-3 inline"
+                                class="d-inline"
                                 onsubmit="return confirm('¿Eliminar este usuario?');"
                             >
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-4 py-6 text-center text-gray-500">No hay usuarios registrados.</td>
+                        <td colspan="4" class="text-center text-muted">No hay usuarios registrados.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 
-    <div class="mt-6">
+    <div class="mt-3">
         {{ $users->links() }}
     </div>
 @endsection

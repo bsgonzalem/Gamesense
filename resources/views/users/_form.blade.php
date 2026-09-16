@@ -2,59 +2,59 @@
     $user = $user ?? null;
 @endphp
 
-<div>
-    <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+<div class="mb-3">
+    <label for="name" class="form-label">Nombre</label>
     <input
         type="text"
         name="name"
         id="name"
         value="{{ old('name', $user?->getName()) }}"
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring"
+        class="form-control @error('name') is-invalid @enderror"
     >
     @error('name')
-        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
 
-<div>
-    <label for="email" class="block text-sm font-medium text-gray-700">Correo</label>
+<div class="mb-3">
+    <label for="email" class="form-label">Correo</label>
     <input
         type="email"
         name="email"
         id="email"
         value="{{ old('email', $user?->getEmail()) }}"
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring"
+        class="form-control @error('email') is-invalid @enderror"
     >
     @error('email')
-        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
 
-<div>
-    <label for="password" class="block text-sm font-medium text-gray-700">
+<div class="mb-3">
+    <label for="password" class="form-label">
         Contraseña {{ $user ? '(dejar en blanco para no cambiarla)' : '' }}
     </label>
     <input
         type="password"
         name="password"
         id="password"
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring"
+        class="form-control @error('password') is-invalid @enderror"
     >
     @error('password')
-        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
 
-<div>
-    <label for="address" class="block text-sm font-medium text-gray-700">Dirección</label>
+<div class="mb-3">
+    <label for="address" class="form-label">Dirección</label>
     <input
         type="text"
         name="address"
         id="address"
         value="{{ old('address', $user?->getAddress()) }}"
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring"
+        class="form-control @error('address') is-invalid @enderror"
     >
     @error('address')
-        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
