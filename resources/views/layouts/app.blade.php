@@ -12,7 +12,7 @@
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
 
-    <title>@yield('title', 'Online Store')</title>
+    <title>@yield('title', 'Game sense')</title>
 
 </head>
 
